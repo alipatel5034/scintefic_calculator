@@ -1,0 +1,809 @@
+/* =========================================
+   GLOBAL
+========================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --bg: #f4f7fb;
+    --card: #ffffff;
+    --card-secondary: #f8fafc;
+
+    --text: #172033;
+    --text-secondary: #687386;
+
+    --primary: #4f46e5;
+    --primary-dark: #3730a3;
+
+    --border: #e2e8f0;
+
+    --number: #ffffff;
+    --function: #eef2ff;
+    --operator: #e0e7ff;
+
+    --success: #16a34a;
+
+    --shadow:
+        0 10px 30px rgba(15, 23, 42, 0.08);
+}
+
+
+/* DARK MODE */
+
+body.dark {
+    --bg: #0f172a;
+    --card: #111827;
+    --card-secondary: #1e293b;
+
+    --text: #f8fafc;
+    --text-secondary: #94a3b8;
+
+    --primary: #818cf8;
+    --primary-dark: #6366f1;
+
+    --border: #334155;
+
+    --number: #1e293b;
+    --function: #312e81;
+    --operator: #3730a3;
+
+    --shadow:
+        0 10px 35px rgba(0, 0, 0, 0.35);
+}
+
+
+/* =========================================
+   BODY
+========================================= */
+
+body {
+    min-height: 100vh;
+
+    background:
+        radial-gradient(
+            circle at top right,
+            rgba(79, 70, 229, 0.10),
+            transparent 30%
+        ),
+        var(--bg);
+
+    color: var(--text);
+
+    font-family:
+        Inter,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+
+    transition:
+        background 0.3s ease,
+        color 0.3s ease;
+}
+
+
+/* =========================================
+   MAIN APP
+========================================= */
+
+.app {
+    width: 100%;
+    max-width: 1450px;
+
+    margin: auto;
+    padding: 25px;
+}
+
+
+/* =========================================
+   TOP BAR
+========================================= */
+
+.topbar {
+    display: flex;
+
+    justify-content: space-between;
+    align-items: center;
+
+    margin-bottom: 25px;
+}
+
+.topbar h1 {
+    font-size: 30px;
+    font-weight: 800;
+
+    letter-spacing: -0.5px;
+}
+
+.topbar p {
+    margin-top: 5px;
+
+    color: var(--text-secondary);
+
+    font-size: 14px;
+}
+
+
+.theme-btn {
+    width: 50px;
+    height: 50px;
+
+    border: 1px solid var(--border);
+
+    border-radius: 14px;
+
+    background: var(--card);
+
+    color: var(--text);
+
+    cursor: pointer;
+
+    font-size: 18px;
+
+    box-shadow: var(--shadow);
+
+    transition: 0.2s;
+}
+
+.theme-btn:hover {
+    transform: translateY(-2px);
+}
+
+
+/* =========================================
+   CALCULATOR
+========================================= */
+
+.calculator {
+    background: var(--card);
+
+    border: 1px solid var(--border);
+
+    border-radius: 24px;
+
+    padding: 22px;
+
+    box-shadow: var(--shadow);
+}
+
+
+/* =========================================
+   DISPLAY
+========================================= */
+
+.display-section {
+    background: #0b1220;
+
+    border-radius: 18px;
+
+    min-height: 180px;
+
+    padding: 22px;
+
+    color: white;
+
+    display: flex;
+    flex-direction: column;
+
+    justify-content: space-between;
+}
+
+.mode-label {
+    font-size: 13px;
+
+    color: #94a3b8;
+
+    letter-spacing: 1px;
+}
+
+.mode-label span {
+    color: #818cf8;
+
+    font-weight: 700;
+}
+
+.expression {
+    text-align: right;
+
+    color: #94a3b8;
+
+    font-size: 18px;
+
+    min-height: 30px;
+}
+
+.result {
+    text-align: right;
+
+    font-size: 42px;
+
+    font-weight: 700;
+
+    overflow-x: auto;
+}
+
+
+/* =========================================
+   MODE BUTTONS
+========================================= */
+
+.mode-section {
+    display: grid;
+
+    grid-template-columns:
+        repeat(6, 1fr);
+
+    gap: 10px;
+
+    margin: 20px 0;
+}
+
+.mode-btn {
+    border: 1px solid var(--border);
+
+    background: var(--card-secondary);
+
+    color: var(--text);
+
+    padding: 13px 8px;
+
+    border-radius: 10px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+.mode-btn:hover {
+    border-color: var(--primary);
+}
+
+.mode-btn.active {
+    background: var(--primary);
+
+    color: white;
+
+    border-color: var(--primary);
+}
+
+
+/* =========================================
+   BODY
+========================================= */
+
+.calculator-body {
+    display: grid;
+
+    grid-template-columns:
+        1.2fr 1fr;
+
+    gap: 20px;
+}
+
+
+/* =========================================
+   KEYPAD
+========================================= */
+
+.keypad {
+    display: grid;
+
+    grid-template-columns:
+        repeat(7, 1fr);
+
+    gap: 10px;
+
+    padding: 18px;
+
+    background: var(--card-secondary);
+
+    border: 1px solid var(--border);
+
+    border-radius: 18px;
+}
+
+.key {
+    min-height: 65px;
+
+    border-radius: 12px;
+
+    border: 1px solid var(--border);
+
+    font-size: 17px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.1s,
+        box-shadow 0.2s;
+}
+
+.key:hover {
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 5px 12px rgba(0, 0, 0, 0.08);
+}
+
+.key:active {
+    transform: scale(0.96);
+}
+
+
+/* Number keys */
+
+.key.number {
+    background: var(--number);
+
+    color: var(--text);
+}
+
+
+/* Function keys */
+
+.key.function {
+    background: var(--function);
+
+    color: var(--primary-dark);
+}
+
+
+/* Operator keys */
+
+.key.operator {
+    background: var(--operator);
+
+    color: var(--primary-dark);
+}
+
+
+/* Equals */
+
+.key.equals {
+    background: var(--primary);
+
+    color: white;
+
+    border-color: var(--primary);
+}
+
+
+/* Zero */
+
+.key.zero {
+    grid-column: span 1;
+}
+
+
+/* =========================================
+   MODE PANEL
+========================================= */
+
+.mode-panel {
+    border: 1px solid var(--border);
+
+    border-radius: 18px;
+
+    background: var(--card-secondary);
+
+    padding: 22px;
+
+    min-height: 450px;
+}
+
+.panel {
+    display: none;
+}
+
+.panel.active-panel {
+    display: block;
+}
+
+.panel h2 {
+    font-size: 20px;
+
+    margin-bottom: 8px;
+}
+
+.panel-description {
+    color: var(--text-secondary);
+
+    font-size: 14px;
+
+    margin-bottom: 25px;
+}
+
+
+/* =========================================
+   INPUTS
+========================================= */
+
+.input-group {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 8px;
+
+    margin-bottom: 18px;
+}
+
+.input-group label {
+    font-size: 13px;
+
+    font-weight: 700;
+
+    color: var(--text-secondary);
+}
+
+input,
+select {
+    width: 100%;
+
+    padding: 13px 14px;
+
+    border: 1px solid var(--border);
+
+    border-radius: 10px;
+
+    background: var(--card);
+
+    color: var(--text);
+
+    outline: none;
+
+    font-size: 14px;
+
+    transition: 0.2s;
+}
+
+input:focus,
+select:focus {
+    border-color: var(--primary);
+
+    box-shadow:
+        0 0 0 3px rgba(79, 70, 229, 0.12);
+}
+
+
+/* =========================================
+   TWO COLUMNS
+========================================= */
+
+.two-column {
+    display: grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    gap: 15px;
+}
+
+
+/* =========================================
+   CALCULATE BUTTON
+========================================= */
+
+.calculate-btn {
+    width: 100%;
+
+    margin-top: 15px;
+
+    padding: 14px;
+
+    border: none;
+
+    border-radius: 10px;
+
+    background: var(--primary);
+
+    color: white;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+.calculate-btn:hover {
+    background: var(--primary-dark);
+
+    transform: translateY(-1px);
+}
+
+
+/* =========================================
+   SUB BUTTONS
+========================================= */
+
+.sub-buttons {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, 1fr);
+
+    gap: 10px;
+
+    margin: 20px 0;
+}
+
+.sub-buttons button,
+.matrix-operations button,
+.matrix-size button,
+.vector-type button,
+.vector-operations button {
+    padding: 11px;
+
+    border: 1px solid var(--border);
+
+    border-radius: 9px;
+
+    background: var(--card);
+
+    color: var(--text);
+
+    cursor: pointer;
+
+    font-weight: 600;
+}
+
+.sub-buttons button:hover,
+.matrix-operations button:hover,
+.matrix-size button:hover,
+.vector-type button:hover,
+.vector-operations button:hover {
+    border-color: var(--primary);
+
+    color: var(--primary);
+}
+
+
+/* =========================================
+   LARGE INPUT
+========================================= */
+
+.large-input {
+    margin-top: 10px;
+
+    font-size: 18px;
+}
+
+
+/* =========================================
+   MATRIX
+========================================= */
+
+.matrix-size {
+    display: flex;
+
+    gap: 10px;
+
+    margin-bottom: 15px;
+}
+
+.matrix-size button {
+    flex: 1;
+}
+
+.matrix-operations {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, 1fr);
+
+    gap: 8px;
+
+    margin-bottom: 20px;
+}
+
+.matrix-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, 1fr);
+
+    gap: 8px;
+
+    max-width: 220px;
+
+    margin: auto;
+}
+
+
+/* =========================================
+   VECTOR
+========================================= */
+
+.vector-type {
+    display: flex;
+
+    gap: 10px;
+
+    margin-bottom: 20px;
+}
+
+.vector-type button {
+    flex: 1;
+}
+
+.vector-operations {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, 1fr);
+
+    gap: 8px;
+
+    margin-top: 20px;
+}
+
+
+/* =========================================
+   OUTPUT
+========================================= */
+
+.output-section {
+    margin-top: 20px;
+
+    border: 1px solid var(--border);
+
+    border-radius: 18px;
+
+    overflow: hidden;
+}
+
+.output-header {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    padding: 15px 18px;
+
+    background: var(--card-secondary);
+
+    border-bottom: 1px solid var(--border);
+}
+
+.output-header h2 {
+    font-size: 17px;
+}
+
+.clear-btn {
+    padding: 7px 14px;
+
+    border: 1px solid var(--border);
+
+    border-radius: 8px;
+
+    background: var(--card);
+
+    color: var(--text);
+
+    cursor: pointer;
+}
+
+.output-box {
+    min-height: 130px;
+
+    padding: 20px;
+
+    font-family: "Courier New", monospace;
+
+    color: var(--text-secondary);
+
+    white-space: pre-wrap;
+
+    overflow-x: auto;
+}
+
+
+/* =========================================
+   FOOTER
+========================================= */
+
+footer {
+    text-align: center;
+
+    margin-top: 20px;
+
+    color: var(--text-secondary);
+
+    font-size: 13px;
+}
+
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (max-width: 1100px) {
+
+    .calculator-body {
+        grid-template-columns: 1fr;
+    }
+
+    .keypad {
+        order: 1;
+    }
+
+    .mode-panel {
+        order: 2;
+    }
+}
+
+
+@media (max-width: 750px) {
+
+    .app {
+        padding: 12px;
+    }
+
+    .topbar h1 {
+        font-size: 23px;
+    }
+
+    .mode-section {
+        grid-template-columns:
+            repeat(3, 1fr);
+    }
+
+    .keypad {
+        grid-template-columns:
+            repeat(4, 1fr);
+    }
+
+    .key {
+        min-height: 55px;
+    }
+
+    .two-column {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+@media (max-width: 480px) {
+
+    .calculator {
+        padding: 12px;
+    }
+
+    .mode-section {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+    .keypad {
+        grid-template-columns:
+            repeat(4, 1fr);
+
+        gap: 7px;
+
+        padding: 10px;
+    }
+
+    .key {
+        min-height: 50px;
+
+        font-size: 14px;
+    }
+
+    .result {
+        font-size: 30px;
+    }
+
+    .sub-buttons {
+        grid-template-columns: 1fr;
+    }
+}
