@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Scientific Calculator</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="app">
+
+        <!-- Header -->
+        <header class="topbar">
+            <div>
+                <h1>Scientific Calculator</h1>
+                <p>Advanced Mathematical Computing System</p>
+            </div>
+
+            <button id="themeToggle" class="theme-btn">
+                ☀️ / 🌙
+            </button>
+        </header>
+
+
+        <!-- Calculator -->
+        <main class="calculator">
+
+            <!-- Display -->
+            <section class="display-section">
+
+                <div class="mode-label">
+                    MODE: <span id="currentMode">COMP</span>
+                </div>
+
+                <div id="expression" class="expression">
+                    0
+                </div>
+
+                <div id="result" class="result">
+                    0
+                </div>
+
+            </section>
+
+
+            <!-- Mode Selection -->
+            <section class="mode-section">
+
+                <button class="mode-btn active" data-mode="comp">
+                    COMP
+                </button>
+
+                <button class="mode-btn" data-mode="complex">
+                    COMPLEX
+                </button>
+
+                <button class="mode-btn" data-mode="equation">
+                    EQUATION
+                </button>
+
+                <button class="mode-btn" data-mode="base">
+                    BASE-N
+                </button>
+
+                <button class="mode-btn" data-mode="matrix">
+                    MATRIX
+                </button>
+
+                <button class="mode-btn" data-mode="vector">
+                    VECTOR
+                </button>
+
+            </section>
+
+
+            <!-- Main Calculator -->
+            <section class="calculator-body">
+
+                <!-- Scientific Keys -->
+                <div class="keypad">
+
+                    <!-- Row 1 -->
+                    <button class="key function">ON</button>
+                    <button class="key function">MODE</button>
+                    <button class="key function">SHIFT</button>
+                    <button class="key function">ALPHA</button>
+                    <button class="key function">xʸ</button>
+                    <button class="key function">√</button>
+                    <button class="key function">π</button>
+
+
+                    <!-- Row 2 -->
+                    <button class="key number">7</button>
+                    <button class="key number">8</button>
+                    <button class="key number">9</button>
+                    <button class="key operator">×</button>
+                    <button class="key function">(</button>
+                    <button class="key function">)</button>
+                    <button class="key operator">%</button>
+
+
+                    <!-- Row 3 -->
+                    <button class="key number">4</button>
+                    <button class="key number">5</button>
+                    <button class="key number">6</button>
+                    <button class="key operator">−</button>
+                    <button class="key function">sin</button>
+                    <button class="key function">cos</button>
+                    <button class="key function">tan</button>
+
+
+                    <!-- Row 4 -->
+                    <button class="key number">1</button>
+                    <button class="key number">2</button>
+                    <button class="key number">3</button>
+                    <button class="key operator">+</button>
+                    <button class="key function">log</button>
+                    <button class="key function">ln</button>
+                    <button class="key function">x⁻¹</button>
+
+
+                    <!-- Row 5 -->
+                    <button class="key number zero">0</button>
+                    <button class="key number">.</button>
+                    <button class="key function">×10ˣ</button>
+                    <button class="key operator">÷</button>
+                    <button class="key function">Ans</button>
+                    <button class="key function">,</button>
+                    <button class="key equals">=</button>
+
+                </div>
+
+
+                <!-- Mode Panel -->
+                <aside class="mode-panel">
+
+                    <!-- COMP -->
+                    <div id="compPanel" class="panel active-panel">
+
+                        <h2>COMP MODE</h2>
+
+                        <div class="panel-description">
+                            Basic and scientific calculations
+                        </div>
+
+                        <div class="input-group">
+                            <label>Expression</label>
+
+                            <input
+                                type="text"
+                                id="compInput"
+                                placeholder="e.g. 25 + 5 × 2"
+                            >
+                        </div>
+
+                        <button class="calculate-btn">
+                            Calculate
+                        </button>
+
+                    </div>
+
+
+                    <!-- COMPLEX -->
+                    <div id="complexPanel" class="panel">
+
+                        <h2>COMPLEX NUMBER MODE</h2>
+
+                        <select id="complexOperation">
+                            <option>Addition</option>
+                            <option>Subtraction</option>
+                            <option>Multiplication</option>
+                            <option>Division</option>
+                            <option>Magnitude & Argument</option>
+                        </select>
+
+                        <div class="two-column">
+
+                            <div class="input-group">
+                                <label>Complex Number 1</label>
+                                <input
+                                    type="number"
+                                    placeholder="Real"
+                                >
+                                <input
+                                    type="number"
+                                    placeholder="Imaginary"
+                                >
+                            </div>
+
+                            <div class="input-group">
+                                <label>Complex Number 2</label>
+                                <input
+                                    type="number"
+                                    placeholder="Real"
+                                >
+                                <input
+                                    type="number"
+                                    placeholder="Imaginary"
+                                >
+                            </div>
+
+                        </div>
+
+                        <button class="calculate-btn">
+                            Calculate
+                        </button>
+
+                    </div>
+
+
+                    <!-- EQUATION -->
+                    <div id="equationPanel" class="panel">
+
+                        <h2>EQUATION MODE</h2>
+
+                        <div class="sub-buttons">
+
+                            <button>2 Equations</button>
+                            <button>3 Equations</button>
+                            <button>Quadratic</button>
+                            <button>Cubic</button>
+
+                        </div>
+
+                        <div class="equation-inputs">
+
+                            <input placeholder="a">
+                            <input placeholder="b">
+                            <input placeholder="c">
+
+                        </div>
+
+                        <button class="calculate-btn">
+                            Solve Equation
+                        </button>
+
+                    </div>
+
+
+                    <!-- BASE N -->
+                    <div id="basePanel" class="panel">
+
+                        <h2>BASE-N MODE</h2>
+
+                        <div class="sub-buttons">
+
+                            <button>Decimal → Binary</button>
+                            <button>Decimal → Octal</button>
+                            <button>Decimal → Hexadecimal</button>
+
+                        </div>
+
+                        <input
+                            type="number"
+                            class="large-input"
+                            placeholder="Enter decimal number"
+                        >
+
+                        <button class="calculate-btn">
+                            Convert
+                        </button>
+
+                    </div>
+
+
+                    <!-- MATRIX -->
+                    <div id="matrixPanel" class="panel">
+
+                        <h2>MATRIX MODE</h2>
+
+                        <div class="matrix-size">
+
+                            <button>2 × 2</button>
+                            <button>3 × 3</button>
+
+                        </div>
+
+                        <div class="matrix-operations">
+
+                            <button>Determinant</button>
+                            <button>Transpose</button>
+                            <button>Inverse</button>
+                            <button>Addition</button>
+                            <button>Subtraction</button>
+                            <button>Multiplication</button>
+
+                        </div>
+
+                        <div class="matrix-grid">
+
+                            <input>
+                            <input>
+
+                            <input>
+                            <input>
+
+                        </div>
+
+                        <button class="calculate-btn">
+                            Calculate Matrix
+                        </button>
+
+                    </div>
+
+
+                    <!-- VECTOR -->
+                    <div id="vectorPanel" class="panel">
+
+                        <h2>VECTOR MODE</h2>
+
+                        <div class="vector-type">
+
+                            <button>2D Vector</button>
+                            <button>3D Vector</button>
+
+                        </div>
+
+                        <div class="two-column">
+
+                            <div class="input-group">
+
+                                <label>Vector V1</label>
+
+                                <input placeholder="X">
+                                <input placeholder="Y">
+                                <input placeholder="Z">
+
+                            </div>
+
+                            <div class="input-group">
+
+                                <label>Vector V2</label>
+
+                                <input placeholder="X">
+                                <input placeholder="Y">
+                                <input placeholder="Z">
+
+                            </div>
+
+                        </div>
+
+                        <div class="vector-operations">
+
+                            <button>Addition</button>
+                            <button>Subtraction</button>
+                            <button>Dot Product</button>
+                            <button>Cross Product</button>
+
+                        </div>
+
+                        <button class="calculate-btn">
+                            Calculate Vector
+                        </button>
+
+                    </div>
+
+                </aside>
+
+            </section>
+
+
+            <!-- Output -->
+            <section class="output-section">
+
+                <div class="output-header">
+                    <h2>Output</h2>
+
+                    <button class="clear-btn">
+                        Clear
+                    </button>
+                </div>
+
+                <div id="output" class="output-box">
+                    <span>Result will appear here...</span>
+                </div>
+
+            </section>
+
+        </main>
+
+
+        <!-- Footer -->
+        <footer>
+            Scientific Calculator • Mathematical Computing System
+        </footer>
+
+    </div>
+
+
+    <!-- JavaScript will be connected here -->
+    <script src="script.js"></script>
+
+</body>
+</html>
